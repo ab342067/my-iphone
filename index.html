@@ -365,7 +365,279 @@ button { font: inherit; cursor: pointer; }
 }
 
 .hint { color: #777; font-size: 12px; margin-top: 15px; }
+#lock {
 
+  position: relative;
+
+  isolation: isolate;
+
+  overflow-y: auto;
+
+  background:
+
+    radial-gradient(ellipse at 20% 30%, #f6c6cf 0%, transparent 42%),
+
+    radial-gradient(ellipse at 80% 55%, #a8c6d8 0%, transparent 45%),
+
+    linear-gradient(160deg, #4c587b, #9e9ebc 55%, #e5c6c5);
+
+  color: white;
+
+  padding: 65px 24px 55px;
+
+}
+
+#lock::before {
+
+  content: "";
+
+  position: absolute;
+
+  z-index: -1;
+
+  width: 290px;
+
+  height: 390px;
+
+  left: 50%;
+
+  top: 160px;
+
+  transform: translateX(-50%) rotate(-18deg);
+
+  border-radius: 48% 52% 40% 60%;
+
+  background: linear-gradient(
+
+    135deg,
+
+    #ffffff55,
+
+    #ffffff05 65%
+
+  );
+
+  filter: blur(3px);
+
+}
+
+#lock .lock-date {
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.4px;
+
+}
+
+#lock .lock-time {
+
+  font-size: clamp(76px, 22vw, 100px);
+
+  font-weight: 300;
+
+  letter-spacing: -5px;
+
+  line-height: 1.1;
+
+  margin: 10px 0 20px;
+
+  font-variant-numeric: tabular-nums;
+
+}
+
+#lock p {
+
+  text-shadow: 0 1px 8px #0002;
+
+}
+
+#lock .main-btn {
+
+  border: 1px solid #ffffff60;
+
+  border-radius: 28px;
+
+  background: #ffffff30;
+
+  color: white;
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow: 0 8px 25px #2222;
+
+  margin-top: 28px;
+
+  padding: 16px;
+
+}
+
+#lock .main-btn:active {
+
+  background: #ffffff50;
+
+  transform: scale(0.98);
+
+}
+
+/* 홈 화면 배경 */
+
+#home {
+
+  position: relative;
+
+  background:
+
+    radial-gradient(ellipse at 10% 15%, #f6d9cb, transparent 50%),
+
+    radial-gradient(ellipse at 90% 70%, #c4c9e7, transparent 50%),
+
+    linear-gradient(160deg, #e9d9e3, #d4e0e8);
+
+  padding: 35px 22px 115px;
+
+}
+
+#home .welcome {
+
+  font-size: 30px;
+
+  letter-spacing: -1px;
+
+  color: #292a36;
+
+}
+
+#home .sub {
+
+  color: #686779;
+
+}
+
+#home .apps {
+
+  gap: 27px 10px;
+
+  margin-top: 38px;
+
+}
+
+#home .app {
+
+  color: #292a36;
+
+  font-weight: 500;
+
+  text-shadow: 0 1px 5px #fff5;
+
+}
+
+#home .app-icon {
+
+  width: 62px;
+
+  height: 62px;
+
+  border-radius: 19px;
+
+  background: #ffffffa8;
+
+  border: 1px solid #ffffff80;
+
+  box-shadow: 0 6px 15px #5552;
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  transition: transform 0.15s;
+
+}
+
+#home .app:active .app-icon {
+
+  transform: scale(0.9);
+
+}
+
+#home .card {
+
+  background: #ffffff72;
+
+  border: 1px solid #ffffff80;
+
+  border-radius: 24px;
+
+  box-shadow: 0 8px 24px #5551;
+
+  backdrop-filter: blur(16px);
+
+  -webkit-backdrop-filter: blur(16px);
+
+}
+
+#home .main-btn {
+
+  border: 1px solid #ffffff80;
+
+  background: #ffffff70;
+
+  color: #292a36;
+
+  border-radius: 24px;
+
+}
+
+/* 홈 화면 아래쪽의 앱 독 */
+
+.dock {
+
+  position: absolute;
+
+  bottom: 24px;
+
+  left: 15px;
+
+  right: 15px;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  padding: 12px 8px;
+
+  border: 1px solid #ffffff80;
+
+  border-radius: 27px;
+
+  background: #ffffff60;
+
+  backdrop-filter: blur(20px);
+
+  -webkit-backdrop-filter: blur(20px);
+
+}
+
+.dock button {
+
+  border: 0;
+
+  background: #ffffffb0;
+
+  border-radius: 16px;
+
+  width: 48px;
+
+  height: 48px;
+
+  font-size: 24px;
+
+}
 </style>
 
 </head>
@@ -448,9 +720,9 @@ button { font: inherit; cursor: pointer; }
 
   <section id="home" class="screen">
 
-    <div class="welcome">안녕, 반가워!</div>
+    <div class="welcome">좋은 하루야 ☁️</div>
 
-    <div class="sub">이곳에 준비한 것들이 있어.</div>
+<div class="sub">오늘도 너를 위한 작은 공간</div>
 
     <div class="apps">
 
