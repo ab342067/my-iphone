@@ -638,6 +638,162 @@ button { font: inherit; cursor: pointer; }
   font-size: 24px;
 
 }
+  
+/* iPhone-style detail upgrade */
+.phone {
+  background: #f5f5f7;
+  border: 5px solid #171717;
+  border-radius: 48px;
+  box-shadow:
+    0 0 0 2px #777,
+    0 24px 60px #0003;
+}
+
+/* Dynamic Island */
+.phone::before {
+  content: "";
+  position: absolute;
+  z-index: 20;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 28px;
+  border-radius: 20px;
+  background: #050505;
+  pointer-events: none;
+}
+
+/* Status bar */
+.status {
+  height: 42px;
+  padding: 13px 25px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #171717;
+}
+
+/* Lock screen */
+#lock {
+  background:
+    radial-gradient(
+      ellipse at 20% 30%,
+      #f6d0d7 0%, transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 80% 65%,
+      #a6bfd9 0%, transparent 50%
+    ),
+    linear-gradient(160deg, #606c91, #c9b9d1 65%, #e9d4cf);
+  padding-top: 80px;
+  color: white;
+}
+
+#lock .lock-date {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+#lock .lock-time {
+  font-size: 88px;
+  font-weight: 300;
+  letter-spacing: -5px;
+  line-height: 1.05;
+  margin: 12px 0 25px;
+}
+
+#lock .main-btn {
+  background: #ffffff30;
+  border: 1px solid #ffffff75;
+  border-radius: 28px;
+  color: white;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Home screen wallpaper */
+#home {
+  background:
+    radial-gradient(
+      ellipse at 15% 15%,
+      #f8d9cb 0%, transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 85% 60%,
+      #b7c5e8 0%, transparent 48%
+    ),
+    linear-gradient(160deg, #e9dbe7, #d5e3ed);
+  padding-top: 48px;
+  padding-bottom: 125px;
+}
+
+#home .welcome {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+#home .apps {
+  gap: 25px 8px;
+  margin-top: 35px;
+}
+
+#home .app {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#home .app-icon {
+  width: 59px;
+  height: 59px;
+  border-radius: 17px;
+  background: #ffffffa8;
+  border: 1px solid #ffffff85;
+  box-shadow: 0 5px 12px #0002;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+#home .card {
+  background: #ffffff75;
+  border: 1px solid #ffffff85;
+  border-radius: 23px;
+  box-shadow: 0 5px 18px #0001;
+}
+
+/* Translucent app dock */
+.dock {
+  bottom: 24px;
+  background: #ffffff65;
+  border: 1px solid #ffffff90;
+  border-radius: 28px;
+  padding: 12px 8px;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+}
+
+.dock button {
+  border: 1px solid #ffffff80;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px #0001;
+}
+
+/* Smooth screen transitions */
+.screen {
+  animation: appear 0.22s ease-out;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0.65;
+    transform: scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 </style>
 
 </head>
