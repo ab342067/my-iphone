@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>My iPhone</title>
+
+<style>
+
+* { box-sizing: border-box; }
+
+body {
+
+  margin: 0;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #e9e8e5;
+
+  font-family: -apple-system, BlinkMacSystemFont,
+
+    "Apple SD Gothic Neo", sans-serif;
+
+  color: #222;
+
+}
+
+.phone {
+
+  width: min(390px, 100vw);
+
+  height: min(800px, 100dvh);
+
+  min-height: 580px;
+
+  background: #f7f5f2;
+
+  border: 7px solid #222;
+
+  border-radius: 48px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  box-shadow: 0 18px 50px #0002;
+
+}
+
+.status {
+
+  height: 35px;
+
+  padding: 12px 25px 0;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+.screen {
+
+  display: none;
+
+  height: calc(100% - 35px);
+
+  overflow-y: auto;
+
+  padding: 18px;
+
+  padding-bottom: 38px;
+
+}
+
+.screen.active { display: block; }
+
+#lock {
+
+  background: linear-gradient(160deg, #b7c7d6, #e7d9d0 65%, #c4c9bf);
+
+  text-align: center;
+
+  padding-top: 95px;
+
+}
+
+.lock-date { font-size: 16px; }
+
+.lock-time {
+
+  font-size: 76px;
+
+  font-weight: 300;
+
+  letter-spacing: -4px;
+
+  margin: 8px 0 50px;
+
+}
+
+button { font: inherit; cursor: pointer; }
+
+.main-btn {
+
+  border: 0;
+
+  border-radius: 18px;
+
+  padding: 14px 20px;
+
+  background: #242424;
+
+  color: white;
+
+  width: 100%;
+
+  margin-top: 12px;
+
+}
+
+.light-btn {
+
+  background: #ffffffa8;
+
+  color: #222;
+
+}
+
+#passcode { text-align: center; padding-top: 65px; }
+
+.dots { font-size: 28px; letter-spacing: 10px; margin: 28px 0; }
+
+.keypad {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+
+  max-width: 270px;
+
+  margin: 25px auto;
+
+}
+
+.key {
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background: #e6e3df;
+
+  height: 68px;
+
+  width: 68px;
+
+  margin: auto;
+
+  font-size: 23px;
+
+}
+
+.key:active { background: #c9c5c0; }
+
+#home {
+
+  background: linear-gradient(160deg, #f4e7e0, #d9d9e9);
+
+  padding-top: 45px;
+
+}
+
+.welcome { font-size: 27px; font-weight: 700; }
+
+.sub { color: #777; font-size: 13px; margin-top: 7px; }
+
+.apps {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px 10px;
+
+  margin-top: 55px;
+
+}
+
+.app {
+
+  border: 0;
+
+  background: transparent;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 12px;
+
+}
+
+.app-icon {
+
+  width: 60px;
+
+  height: 60px;
+
+  border-radius: 18px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #ffffffc9;
+
+  font-size: 29px;
+
+  box-shadow: 0 4px 10px #0001;
+
+}
+
+.panel-title {
+
+  font-size: 27px;
+
+  font-weight: 750;
+
+  margin: 12px 0 20px;
+
+}
+
+.back {
+
+  border: 0;
+
+  background: #e7e3df;
+
+  border-radius: 20px;
+
+  padding: 9px 14px;
+
+}
+
+.card {
+
+  padding: 16px;
+
+  border-radius: 18px;
+
+  background: white;
+
+  margin: 12px 0;
+
+}
+
+.photo-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 9px;
+
+}
+
+.photo-grid img {
+
+  width: 100%;
+
+  aspect-ratio: 1;
+
+  object-fit: cover;
+
+  border-radius: 14px;
+
+  background: #e7e3df;
+
+}
+
+.bubble {
+
+  background: #e5e3df;
+
+  padding: 12px 15px;
+
+  border-radius: 18px 18px 18px 5px;
+
+  margin: 12px 35px 12px 0;
+
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+
+}
+
+.bubble.me {
+
+  background: #a9c9a9;
+
+  border-radius: 18px 18px 5px 18px;
+
+  margin: 12px 0 12px 35px;
+
+}
+
+.note {
+
+  line-height: 1.9;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: anywhere;
+
+}
+
+.home-bar {
+
+  position: absolute;
+
+  z-index: 5;
+
+  bottom: 7px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 110px;
+
+  height: 4px;
+
+  border-radius: 10px;
+
+  background: #222;
+
+}
+
+.hint { color: #777; font-size: 12px; margin-top: 15px; }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="phone">
+
+  <div class="status">
+
+    <span id="statusTime">9:41</span>
+
+    <span>●●● ▰</span>
+
+  </div>
+
+  <!-- 잠금 화면 -->
+
+  <section id="lock" class="screen active">
+
+    <div class="lock-date">나만의 작은 공간</div>
+
+    <div class="lock-time" id="bigTime">9:41</div>
+
+    <p>열어 보면 알게 될 거야.</p>
+
+    <button class="main-btn light-btn"
+
+      onclick="showScreen('passcode')">휴대폰 열기</button>
+
+  </section>
+
+  <!-- 비밀번호 화면 -->
+
+  <section id="passcode" class="screen">
+
+    <h2>암호 입력</h2>
+
+    <p>비밀번호를 입력해 주세요.</p>
+
+    <div class="dots" id="dots">○ ○ ○ ○</div>
+
+    <div class="keypad">
+
+      <button class="key" onclick="press(1)">1</button>
+
+      <button class="key" onclick="press(2)">2</button>
+
+      <button class="key" onclick="press(3)">3</button>
+
+      <button class="key" onclick="press(4)">4</button>
+
+      <button class="key" onclick="press(5)">5</button>
+
+      <button class="key" onclick="press(6)">6</button>
+
+      <button class="key" onclick="press(7)">7</button>
+
+      <button class="key" onclick="press(8)">8</button>
+
+      <button class="key" onclick="press(9)">9</button>
+
+      <button class="key" onclick="clearPass()">⌫</button>
+
+      <button class="key" onclick="press(0)">0</button>
+
+      <button class="key" onclick="checkPass()">↵</button>
+
+    </div>
+
+    <p id="error" class="hint">암호 4자리를 입력하세요.</p>
+
+    <button class="main-btn light-btn"
+
+      onclick="showScreen('lock')">취소</button>
+
+  </section>
+
+  <!-- 홈 화면 -->
+
+  <section id="home" class="screen">
+
+    <div class="welcome">안녕, 반가워!</div>
+
+    <div class="sub">이곳에 준비한 것들이 있어.</div>
+
+    <div class="apps">
+
+      <button class="app" onclick="showScreen('photos')">
+
+        <span class="app-icon">🌄</span>사진
+
+      </button>
+
+      <button class="app" onclick="showScreen('messages')">
+
+        <span class="app-icon">💬</span>메시지
+
+      </button>
+
+      <button class="app" onclick="showScreen('letter')">
+
+        <span class="app-icon">💌</span>편지
+
+      </button>
+
+    </div>
+
+    <div class="card" style="margin-top:50px">
+
+      <b>오늘의 메시지</b>
+
+      <p>천천히 둘러봐. 아직 보여 줄 게 남아 있으니까.</p>
+
+    </div>
+
+    <button class="main-btn light-btn"
+
+      onclick="showScreen('lock')">화면 잠그기</button>
+
+  </section>
+
+  <!-- 사진 화면 -->
+
+  <section id="photos" class="screen">
+
+    <button class="back" onclick="showScreen('home')">‹ 홈</button>
+
+    <h1 class="panel-title">사진</h1>
+
+    <p class="sub">기억하고 싶은 순간들</p>
+
+    <div class="photo-grid">
+
+      <img src="photo1.jpg" alt="첫 번째 추억"
+
+        onerror="this.style.display='none'">
+
+      <img src="photo2.jpg" alt="두 번째 추억"
+
+        onerror="this.style.display='none'">
+
+      <img src="photo3.jpg" alt="세 번째 추억"
+
+        onerror="this.style.display='none'">
+
+      <img src="photo4.jpg" alt="네 번째 추억"
+
+        onerror="this.style.display='none'">
+
+    </div>
+
+    <div class="card">사진 파일을 추가하면 여기에 표시돼.</div>
+
+  </section>
+
+  <!-- 메시지 화면 -->
+
+  <section id="messages" class="screen">
+
+    <button class="back" onclick="showScreen('home')">‹ 홈</button>
+
+    <h1 class="panel-title">메시지</h1>
+
+    <div class="card">
+
+      <b>나와 너</b>
+
+      <p class="sub">오늘의 대화</p>
+
+    </div>
+
+    <div class="bubble">뭐 하고 있어?</div>
+
+    <div class="bubble me">네 생각하면서 이걸 만들고 있어.</div>
+
+    <div class="bubble">진짜? 뭔데?</div>
+
+    <div class="bubble me">조금만 더 둘러봐. 알려 줄게.</div>
+
+    <div class="bubble">궁금하게 하네 ㅋㅋ</div>
+
+  </section>
+
+  <!-- 편지 화면 -->
+
+  <section id="letter" class="screen">
+
+    <button class="back" onclick="showScreen('home')">‹ 홈</button>
+
+    <h1 class="panel-title">너에게</h1>
+
+    <div class="card">
+
+      <p class="sub">FROM. 나</p>
+
+      <div class="note">안녕!
+
+이렇게 작은 페이지에
+
+내 마음을 담아 보려고 해.
+
+평소에는 다 전하지 못했던 말들을
+
+여기에 하나씩 남겨 두고 싶었어.
+
+이곳을 열어 본 오늘이
+
+너에게 작은 기쁨으로 남았으면 좋겠다.
+
+늘 고맙고, 앞으로도 좋은 순간들을
+
+많이 함께 만들자.
+
+- 나로부터</div>
+
+    </div>
+
+  </section>
+
+  <div class="home-bar"></div>
+
+</div>
+
+<script>
+
+let entered = "";
+
+const PASSWORD = "1234"; // 원하는 숫자로 변경하기
+
+function showScreen(id) {
+
+  document.querySelectorAll(".screen").forEach(screen => {
+
+    screen.classList.remove("active");
+
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  if (id === "passcode") {
+
+    entered = "";
+
+    updateDots();
+
+    document.getElementById("error").textContent =
+
+      "암호 4자리를 입력하세요.";
+
+  }
+
+}
+
+function press(number) {
+
+  if (entered.length >= 4) return;
+
+  entered += number;
+
+  updateDots();
+
+  if (entered.length === 4) checkPass();
+
+}
+
+function updateDots() {
+
+  document.getElementById("dots").textContent =
+
+    [...Array(4)].map((_, i) =>
+
+      i < entered.length ? "●" : "○"
+
+    ).join(" ");
+
+}
+
+function clearPass() {
+
+  entered = entered.slice(0, -1);
+
+  updateDots();
+
+}
+
+function checkPass() {
+
+  if (entered.length !== 4) {
+
+    document.getElementById("error").textContent =
+
+      "숫자 네 자리를 입력해 주세요.";
+
+    return;
+
+  }
+
+  if (entered === PASSWORD) {
+
+    showScreen("home");
+
+  } else {
+
+    entered = "";
+
+    updateDots();
+
+    document.getElementById("error").textContent =
+
+      "암호가 맞지 않아. 다시 입력해 줘.";
+
+  }
+
+}
+
+function updateTime() {
+
+  const now = new Date();
+
+  const time = now.toLocaleTimeString("ko-KR", {
+
+    hour: "2-digit", minute: "2-digit",
+
+    hour12: false
+
+  });
+
+  document.getElementById("statusTime").textContent = time;
+
+  document.getElementById("bigTime").textContent = time;
+
+}
+
+updateTime();
+
+setInterval(updateTime, 30000);
+
+</script>
+
+</body>
+
+</html>
